@@ -1,0 +1,29 @@
+# ~/.codex/config.toml — MCP servers for Codex CLI
+#
+# Copy this file to ~/.codex/config.toml and fill in your tokens.
+# These give Codex access to Notion, web browsing, and GitHub.
+
+# ── Notion ──────────────────────────────────────────────────
+# Get your token at: https://notion.so/my-integrations
+# Share pages/databases with the integration in Notion
+[mcp_servers.notion]
+command = "npx"
+args = ["-y", "@notionhq/notion-mcp-server"]
+startup_timeout_sec = 60
+
+[mcp_servers.notion.env]
+OPENAPI_MCP_HEADERS = '{"Authorization":"Bearer ntn_YOUR_TOKEN_HERE","Notion-Version":"2022-06-28"}'
+
+# ── Playwright (web browsing) ───────────────────────────────
+[mcp_servers.playwright]
+command = "npx"
+args = ["-y", "@playwright/mcp@latest"]
+startup_timeout_sec = 60
+
+# ── GitHub (optional) ───────────────────────────────────────
+# [mcp_servers.github]
+# command = "npx"
+# args = ["-y", "@modelcontextprotocol/server-github"]
+#
+# [mcp_servers.github.env]
+# GITHUB_TOKEN = "your-token-here"
